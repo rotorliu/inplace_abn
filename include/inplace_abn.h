@@ -76,7 +76,7 @@ struct ActivationFn<scalar_t, Activation::ELU> {
   static INLINE_HOST_DEVICE void backward(scalar_t& y_act, scalar_t& dy_act, float activation_param) {
     if (y_act < 0) {
       dy_act *= y_act + static_cast<scalar_t>(activation_param);
-      y_act = std::log1p(y_act / static_cast<scalar_t>(activation_param));
+      y_act = std::log(1 + y_act / static_cast<scalar_t>(activation_param));
     }
   }
 };
